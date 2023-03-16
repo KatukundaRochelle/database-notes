@@ -1,0 +1,23 @@
+*Below are some questions on databases that were given to us in class that I was able to answer.*
+1.When defining a column D as a foreign key in a table Z, we can specify the condition/action “on delete set null.”
+i. Explain precisely what this condition/action means (i.e., when it is acted on and what happens as a result), with reference to D and Z as well any other columns
+or tables involved.     
+When a foreign key column D is defined with the condition/action "on delete set null" in a table Z, it means that when a record is deleted from the parent table (the table referenced by the foreign key), any matching records in the child table (the table containing the foreign key) will have their D column values set to NULL.
+This action is triggered when a record in the parent table is deleted, which can occur due to a delete statement or cascade delete action. The null value will replace the previous value of D in the child table, effectively breaking the association between the two records.
+For example, consider a parent table called "Orders" and a child table called "Order_Items". The Order_Items table contains a foreign key column called "Order_ID" which references the primary key column "ID" in the Orders table. If the "Order_ID" column in the Order_Items table is defined with the "on delete set null" action, then if an order is deleted from the Orders table, any corresponding records in the Order_Items table will have their "Order_ID" values set to null.
+It is important to note that if the foreign key column D in table Z is part of a composite primary key or composite foreign key, the null value will only be set for the specified column and not for the entire key. Additionally, if there are any constraints on the child table's foreign key column D that disallow null values, the "on delete set null" action will fail and an error will be thrown.
+
+ii. In what situation, with respect to column D, would the action not be able to be carried out and why?
+If the foreign key column D in table Z has a NOT NULL constraint, then the "on delete set null" action cannot be carried out. This is because the NOT NULL constraint ensures that the foreign key column cannot contain null values. If we try to delete a record from the referenced table, it will result in a referential integrity violation, and the database will throw an error.
+
+iii.  With relevant examples describe two types of privileges as used in Databases.
+Two types of privileges commonly used in databases are:
+Grant: Grant privileges allow a user to grant or revoke specific privileges to other users. For example, a database administrator may grant the SELECT privilege to a user so that they can view specific data in the database.
+Revoke: Revoke privileges allow a user to revoke specific privileges from other users. For example, if a user no longer requires the SELECT privilege, it can be revoked by the database administrator.
+
+iv.   Discuss four security mechanisms that can be employed to ensure optimum security of a database system. 
+Four security mechanisms that can be employed to ensure optimum security of a database system are:
+Access control: This mechanism ensures that only authorized users can access the database and perform specific actions. Access control can be implemented through user authentication, authorization, and encryption.
+Auditing: Auditing enables monitoring and recording of all activities that occur in the database. This helps in detecting unauthorized access attempts, data modifications, and other security-related incidents.
+Encryption: Encryption ensures that data is stored securely in the database and is only accessible to authorized users. Encryption can be implemented at various levels, including data-at-rest encryption and data-in-motion encryption.
+Backup and recovery: Backup and recovery mechanisms ensure that the database can be restored to a previous state in case of a security breach or a disaster. Regular backups and testing of recovery procedures are critical to ensure the database's resilience to security incidents.
